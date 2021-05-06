@@ -1,11 +1,12 @@
 // Make socket connection
-const socket = io.connect("https://namesclash.herokuapp.com/");
-// const socket = io.connect("http://localhost:8000/");
+// const socket = io.connect("https://namesclash.herokuapp.com/");
+const socket = io.connect("http://localhost:8000/");
 
 // DOM Query
 const message = document.getElementById("message");
 const btn = document.getElementById("send");
 const output = document.getElementById("chat-area");
+const feedback = document.getElementById("typing");
 
 // Emit events
 function fireMessage() {
@@ -30,6 +31,10 @@ message.addEventListener("keyup", (e) => {
     }
 });
 
+message.addEventListener("keypress", function () {
+    socket.emit("typing", "Someone is typing ...");
+});
+
 // Listen for events
 socket.on("chat", (data) => {
     const div = document.createElement("div");
@@ -40,4 +45,9 @@ socket.on("chat", (data) => {
     `;
     output.appendChild(div);
     output.scrollTop = output.scrollHeight;
+    feedback.innerHTML = "";
+});
+
+socket.on("typing", function (data) {
+    feedback.innerHTML = `<small>${data}</small>`;
 });

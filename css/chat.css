@@ -30,6 +30,10 @@
     color: #fff;
 }
 
+.typing {
+    padding: 0.2em 1em;
+}
+
 .form {
     position: sticky;
     bottom: 0;
