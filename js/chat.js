@@ -1,6 +1,6 @@
 // Make socket connection
-// const socket = io.connect("https://namesclash.herokuapp.com/");
-const socket = io.connect("http://localhost:8000/");
+const socket = io.connect("https://namesclash.herokuapp.com/");
+// const socket = io.connect("http://localhost:8000/");
 
 // DOM Query
 const message = document.getElementById("message");
